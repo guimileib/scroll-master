@@ -1,0 +1,17 @@
+{
+  "name": "scroll-master",
+  "owner": {
+    "name": "Guilherme"
+  },
+  "metadata": {
+    "description": "Skills para produzir sites-experiência com scroll, marca, personagens e SEO/GEO com o Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "scroll-master",
+      "source": "./plugins/scroll-master",
+      "description": "Estúdio completo para sites interativos com scroll: orquestrador, identidade visual, character model, roteiro e vídeos do Flow, SEO/GEO, copy, auditoria e servidor local com recarga automática.",
+      "version": "0.2.0"
+    }
+  ]
+}

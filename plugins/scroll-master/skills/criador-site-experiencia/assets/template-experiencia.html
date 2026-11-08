@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mercado Exemplo · Hortifrúti fresco todo dia</title>
+<meta name="description" content="[PREENCHER] Descrição do negócio em uma frase, com cidade e bairro.">
+<meta property="og:title" content="Mercado Exemplo">
+<meta property="og:description" content="[PREENCHER]">
+<meta property="og:image" content="assets/og-imagem.jpg">
+<link rel="canonical" href="https://[PREENCHER-dominio]/">
+<!-- JSON-LD: gerado pela skill especialista-seo-geo (scripts/gerar_seo.py schema) e colado aqui -->
+<!--
+  TEMPLATE DA SKILL criador-site-experiencia
+  Troque: nome, textos [PREENCHER], cores em :root, fontes, CONFIG no script, dados dos gráficos e pessoas.
+  Funciona sem nenhum asset: a cena de queda usa animação de demonstração até existirem os frames.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fundo: #f3f6ea;        /* fundo geral — use o mesmo hex no prompt se não usar chroma */
+    --texto: #1f2b18;
+    --texto-suave: #55624b;
+    --folha: #2f6b2a;
+    --laranja: #bf4e10;
+    --cartao: #ffffff;
+    --fonte-titulo: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+    --fonte-texto: "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --largura: min(1120px, 100% - 2.5rem);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--fundo); color: var(--texto);
+    font: 400 1.0625rem/1.6 var(--fonte-texto);
+  }
+  img, video, canvas { display: block; max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--laranja); outline-offset: 3px; }
+  .conteudo { width: var(--largura); margin-inline: auto; }
+
+  /* ---------- Cena 1 + 2: queda e marca ---------- */
+  .cena-queda { position: relative; }
+  .palco {
+    position: relative; height: 100svh; min-height: 520px; overflow: hidden;
+    display: grid; place-items: center;
+  }
+  #canvas-queda { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .abertura-frase {
+    position: absolute; top: max(1.5rem, env(safe-area-inset-top)); left: 0; right: 0;
+    text-align: center; margin: 0; font-weight: 600; color: var(--texto-suave);
+  }
+  .marca {
+    position: relative; z-index: 2; text-align: center; padding-inline: 1.25rem;
+    transform: translateY(-16svh);
+  }
+  .marca h1 {
+    margin: 0; font-family: var(--fonte-titulo); font-weight: 800; line-height: .9;
+    font-size: clamp(3.2rem, 13vw, 10rem); letter-spacing: -0.03em; color: var(--folha);
+  }
+  .marca p { margin: .75rem auto 0; max-width: 32ch; font-size: clamp(1.05rem, 2.4vw, 1.35rem); }
+  .dica-scroll {
+    position: absolute; bottom: max(1.25rem, env(safe-area-inset-bottom)); left: 50%;
+    transform: translateX(-50%); font-size: .95rem; color: var(--texto-suave);
+  }
+  .dica-scroll::after { content: ""; display: block; width: 2px; height: 28px; margin: .4rem auto 0; background: currentColor; animation: desce 1.6s ease-in-out infinite; }
+  @keyframes desce { 0%,100% { transform: scaleY(.3); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } }
+
+  /* ---------- Cena 3: números ---------- */
+  .cena-numeros { padding: clamp(4rem, 12vw, 9rem) 0; }
+  .cena-numeros h2, .cena-pessoas h2, .cena-convite h2 {
+    font-family: var(--fonte-titulo); font-weight: 800; letter-spacing: -0.02em;
+    font-size: clamp(2rem, 5.5vw, 3.6rem); line-height: 1.02; margin: 0 0 1rem; max-width: 18ch;
+  }
+  .intro { color: var(--texto-suave); max-width: 52ch; margin: 0 0 3rem; }
+  .numeros-grade { display: grid; gap: 3rem; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .numeros-grade { grid-template-columns: 1.3fr 1fr; align-items: end; } }
+  .grafico { display: flex; align-items: flex-end; gap: clamp(.6rem, 2vw, 1.4rem); height: 280px; border-bottom: 2px solid var(--texto); }
+  .barra { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; text-align: center; }
+  .barra-preenchimento {
+    height: var(--altura); background: var(--folha); border-radius: 6px 6px 0 0;
+    transform-origin: bottom;
+  }
+  .barra:last-child .barra-preenchimento { background: var(--laranja); }
+  .barra-rotulo { position: absolute; left: 0; bottom: 0; width: 100%; transform: translateY(100%); padding-top: .5rem; font-size: .9rem; color: var(--texto-suave); }
+  .barra { position: relative; }
+  .grafico-legenda { margin-top: 2.6rem; font-size: .95rem; color: var(--texto-suave); }
+  .contadores { display: grid; gap: 1.75rem; margin: 0; }
+  .contador dt { color: var(--texto-suave); }
+  .contador dd { margin: 0; font-family: var(--fonte-titulo); font-weight: 800; font-size: clamp(2.6rem, 7vw, 4.2rem); line-height: 1; color: var(--folha); }
+
+  /* ---------- Cena 4: pessoas ---------- */
+  .cena-pessoas { padding: clamp(4rem, 10vw, 8rem) 0; background: var(--folha); color: #f3f6ea; }
+  .cena-pessoas .intro { color: #d5e3c9; }
+  .pessoas-trilho {
+    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 78%);
+    gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem;
+  }
+  @media (min-width: 860px) { .pessoas-trilho { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 300px)); overflow: visible; } }
+  .pessoa { scroll-snap-align: start; margin: 0; }
+  .pessoa-video {
+    position: relative; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden;
+    background: linear-gradient(160deg, #4f8a3f, #1f4a1c);
+  }
+  .pessoa-video video { width: 100%; height: 100%; object-fit: cover; }
+  .botao-som {
+    position: absolute; left: .75rem; bottom: .75rem; border: 0; border-radius: 999px;
+    padding: .55rem 1rem; font: 600 .95rem var(--fonte-texto); background: #fff; color: var(--texto); cursor: pointer;
+  }
+  .pessoa figcaption { padding-top: .9rem; }
+  .pessoa .fala { margin: 0 0 .4rem; font-size: 1.05rem; }
+  .pessoa .quem { margin: 0; color: #d5e3c9; font-size: .95rem; }
+  .aviso-ia { font-size: .85rem; color: #b9cfa9; margin-top: 1.5rem; }
+
+  /* ---------- Cena 5: convite ---------- */
+  .cena-convite { position: relative; min-height: 90svh; display: grid; align-items: center; overflow: hidden; color: #fff; background: #26421f; }
+  .cena-convite video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cena-convite::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,34,15,.85), rgba(20,34,15,.35)); z-index: 1; }
+  .cena-convite .conteudo { position: relative; z-index: 2; padding: 5rem 0; }
+  .cena-convite p { max-width: 44ch; font-size: 1.15rem; }
+  .botao-acao {
+    display: inline-block; margin-top: 1.5rem; padding: 1rem 1.6rem; border-radius: 999px;
+    background: var(--laranja); color: #fff; font-weight: 600; font-size: 1.1rem; text-decoration: none;
+  }
+  .botao-acao:hover { filter: brightness(1.08); }
+  footer { padding: 2rem 0 calc(2rem + env(safe-area-inset-bottom)); font-size: .9rem; color: var(--texto-suave); }
+
+  /* ---------- Estados iniciais da animação (só com JS + GSAP ativos) ---------- */
+  .anima .marca { opacity: 0; }
+
+  /* Sem animação: tudo visível */
+  .sem-animacao .marca { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .dica-scroll::after { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <!-- CENA 1 + 2: verduras caem (scrub) e o nome da empresa surge -->
+  <section class="cena-queda" id="queda" aria-label="Abertura">
+    <div class="palco">
+      <canvas id="canvas-queda" aria-hidden="true"></canvas>
+      <p class="abertura-frase">Colhido ontem, na sua mesa hoje.</p>
+      <div class="marca">
+        <h1>Mercado Exemplo</h1>
+        <p>Hortifrúti escolhido a dedo, no seu bairro desde 1998. [PREENCHER]</p>
+      </div>
+      <div class="dica-scroll" aria-hidden="true">Role para baixo</div>
+    </div>
+  </section>
+
+  <!-- CENA 3: números reais animados -->
+  <section class="cena-numeros" id="numeros" aria-labelledby="titulo-numeros">
+    <div class="conteudo">
+      <h2 id="titulo-numeros">Cada ano, mais famílias escolhem a gente</h2>
+      <p class="intro">Clientes atendidos por mês. [PREENCHER com dados reais do cliente]</p>
+      <div class="numeros-grade">
+        <div>
+          <div class="grafico" role="img" aria-label="Clientes por mês: 2022, 1.800; 2023, 2.600; 2024, 3.400; 2025, 4.700">
+            <div class="barra" data-valor="1800"><div class="barra-preenchimento"></div><span class="barra-rotulo">2022</span></div>
+            <div class="barra" data-valor="2600"><div class="barra-preenchimento"></div><span class="barra-rotulo">2023</span></div>
+            <div class="barra" data-valor="3400"><div class="barra-preenchimento"></div><span class="barra-rotulo">2024</span></div>
+            <div class="barra" data-valor="4700"><div class="barra-preenchimento"></div><span class="barra-rotulo">2025</span></div>
+          </div>
+          <p class="grafico-legenda">Média de clientes por mês</p>
+        </div>
+        <dl class="contadores">
+          <div class="contador"><dt>itens frescos no balcão</dt><dd data-contar="320">320</dd></div>
+          <div class="contador"><dt>produtores parceiros da região</dt><dd data-contar="28">28</dd></div>
+          <div class="contador"><dt>anos no bairro</dt><dd data-contar="27">27</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- CENA 4: pessoas falando (vídeo mudo em loop + botão de som + legenda em HTML) -->
+  <section class="cena-pessoas" id="pessoas" aria-labelledby="titulo-pessoas">
+    <div class="conteudo">
+      <h2 id="titulo-pessoas">Quem escolhe o que vai para a sua casa</h2>
+      <p class="intro">Toque em “Ouvir” para escutar cada um.</p>
+      <div class="pessoas-trilho">
+        <figure class="pessoa">
+          <div class="pessoa-video">
+            <video muted loop playsinline preload="none" data-src="assets/pessoa-ana.mp4" poster="assets/pessoa-ana-poster.webp"></video>
+            <button class="botao-som" type="button" aria-pressed="false">Ouvir</button>
+          </div>
+          <figcaption>
+            <p class="fala">“Toda manhã eu escolho as folhas uma por uma. Se eu não levaria pra minha casa, não vai pro balcão.”</p>
+            <p class="quem">Ana, hortifrúti [PREENCHER]</p>
+          </figcaption>
+        </figure>
+        <figure class="pessoa">
+          <div class="pessoa-video">
+            <video muted loop playsinline preload="none" data-src="assets/pessoa-jorge.mp4" poster="assets/pessoa-jorge-poster.webp"></video>
+            <button class="botao-som" type="button" aria-pressed="false">Ouvir</button>
+          </div>
+          <figcaption>
+            <p class="fala">“A gente conhece cada produtor pelo nome. É por isso que o tomate aqui tem gosto de tomate.”</p>
+            <p class="quem">Jorge, compras [PREENCHER]</p>
+          </figcaption>
+        </figure>
+        <figure class="pessoa">
+          <div class="pessoa-video">
+            <video muted loop playsinline preload="none" data-src="assets/pessoa-lucia.mp4" poster="assets/pessoa-lucia-poster.webp"></video>
+            <button class="botao-som" type="button" aria-pressed="false">Ouvir</button>
+          </div>
+          <figcaption>
+            <p class="fala">“Mandou mensagem no WhatsApp até as dez, a cesta chega no mesmo dia.”</p>
+            <p class="quem">Lúcia, atendimento [PREENCHER]</p>
+          </figcaption>
+        </figure>
+      </div>
+      <!-- Se os vídeos forem gerados por IA, mantenha este aviso. Se forem filmagens reais, remova. -->
+      <p class="aviso-ia">Vídeos ilustrativos criados com inteligência artificial.</p>
+    </div>
+  </section>
+
+  <!-- CENA 5: convite com loop de fundo -->
+  <section class="cena-convite" id="convite" aria-labelledby="titulo-convite">
+    <video class="fundo-loop" muted loop playsinline preload="none" aria-hidden="true"
+      data-src-desktop="assets/fachada-desktop.mp4" data-src-mobile="assets/fachada-mobile.mp4"
+      poster="assets/fachada-poster.webp"></video>
+    <div class="conteudo">
+      <h2 id="titulo-convite">Peça sua cesta pelo WhatsApp</h2>
+      <p>Montamos com o que chegou de mais fresco no dia e entregamos no bairro. [PREENCHER endereço e horário]</p>
+      <a class="botao-acao" href="https://wa.me/5534999999999?text=Ol%C3%A1!%20Quero%20montar%20uma%20cesta" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="conteudo">Mercado Exemplo · [PREENCHER endereço] · [PREENCHER telefone]</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  /* ================= CONFIGURAÇÃO ================= */
+  const CONFIG = {
+    queda: {
+      // Rode: ./processar-videos.sh frames-alpha queda-desktop.mp4 assets/queda-desktop
+      desktop: { pasta: "assets/queda-desktop/", total: 120 },
+      mobile:  { pasta: "assets/queda-mobile/",  total: 90 },
+      ajuste: "contain",     // "contain" para frames com transparência, "cover" para vídeo de tela cheia
+      alinhamento: "bottom", // onde ancorar o frame quando sobrar espaço: "bottom" ou "center"
+      duracaoScroll: "+=250%"
+    }
+  };
+
+  const html = document.documentElement;
+  const reduzirMovimento = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ehMobile = matchMedia("(max-width: 768px), (orientation: portrait)").matches;
+  const temGsap = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
+
+  if (!temGsap || reduzirMovimento) html.classList.add("sem-animacao");
+  else { html.classList.add("anima"); gsap.registerPlugin(ScrollTrigger); }
+
+  /* ================= CENA 1: sequência de frames no canvas ================= */
+  const canvas = document.getElementById("canvas-queda");
+  const ctx = canvas.getContext("2d");
+  const fonte = ehMobile ? CONFIG.queda.mobile : CONFIG.queda.desktop;
+  const TOTAL = fonte.total;
+  const frames = new Array(TOTAL);
+  let modoDemo = false;
+  let frameAtual = (reduzirMovimento || !temGsap) ? TOTAL - 1 : 0;
+
+  const caminho = (i) => `${fonte.pasta}${String(i + 1).padStart(4, "0")}.webp`;
+
+  function dimensionar() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(canvas.clientWidth * dpr);
+    canvas.height = Math.round(canvas.clientHeight * dpr);
+    desenhar(frameAtual);
+  }
+
+  function frameMaisProximo(i) {
+    for (let d = 0; d < TOTAL; d++) {
+      if (frames[i - d] && frames[i - d].complete && frames[i - d].naturalWidth) return frames[i - d];
+      if (frames[i + d] && frames[i + d].complete && frames[i + d].naturalWidth) return frames[i + d];
+    }
+    return null;
+  }
+
+  function desenhar(i) {
+    frameAtual = i;
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    if (modoDemo) return desenharDemo(i / (TOTAL - 1), w, h);
+    const img = frameMaisProximo(i);
+    if (!img) return;
+    const escala = CONFIG.queda.ajuste === "cover"
+      ? Math.max(w / img.naturalWidth, h / img.naturalHeight)
+      : Math.min(w / img.naturalWidth, h / img.naturalHeight);
+    const dw = img.naturalWidth * escala, dh = img.naturalHeight * escala;
+    const x = (w - dw) / 2;
+    const y = CONFIG.queda.alinhamento === "bottom" ? h - dh : (h - dh) / 2;
+    ctx.drawImage(img, x, y, dw, dh);
+  }
+
+  // Demonstração enquanto os frames do Flow não existem: formas de hortifrúti caindo.
+  const cores = ["#3f8f2f", "#d83a2b", "#ef7d1a", "#6a2c70", "#f2c21b", "#2f6b2a"];
+  const itens = Array.from({ length: ehMobile ? 28 : 46 }, (_, k) => {
+    const s = Math.sin(k * 12.9898) * 43758.5453; const r = s - Math.floor(s);
+    const s2 = Math.sin(k * 78.233) * 12345.678; const r2 = s2 - Math.floor(s2);
+    return { x: r, atraso: r2 * 0.55, tam: 0.035 + r * 0.04, cor: cores[k % cores.length], giro: (r2 - 0.5) * 4, pilha: 0.86 - r2 * 0.12 };
+  });
+  function desenharDemo(p, w, h) {
+    const base = Math.min(w, h);
+    for (const it of itens) {
+      const t = Math.min(Math.max((p - it.atraso) / 0.45, 0), 1);
+      if (t <= 0) continue;
+      const queda = 1 - Math.pow(1 - t, 3);
+      const raio = it.tam * base;
+      const y = -raio + queda * (it.pilha * h + raio);
+      const x = it.x * w;
+      ctx.save(); ctx.translate(x, y); ctx.rotate(it.giro * queda);
+      ctx.fillStyle = it.cor; ctx.beginPath(); ctx.ellipse(0, 0, raio, raio * 0.85, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#2f6b2a"; ctx.beginPath(); ctx.ellipse(raio * 0.2, -raio * 0.9, raio * 0.35, raio * 0.15, -0.6, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function carregarFrames() {
+    const primeiro = new Image();
+    primeiro.onload = () => {
+      frames[0] = primeiro; desenhar(frameAtual);
+      for (let i = 1; i < TOTAL; i++) {
+        const img = new Image();
+        img.decoding = "async";
+        img.onload = () => { if (Math.abs(i - frameAtual) < 3) desenhar(frameAtual); };
+        img.src = caminho(i);
+        frames[i] = img;
+      }
+    };
+    primeiro.onerror = () => { modoDemo = true; desenhar(frameAtual); };
+    primeiro.src = caminho(0);
+    // Com movimento reduzido, mostra direto o último frame.
+    if (reduzirMovimento) {
+      const ultimo = new Image();
+      ultimo.onload = () => { frames[TOTAL - 1] = ultimo; desenhar(TOTAL - 1); };
+      ultimo.src = caminho(TOTAL - 1);
+    }
+  }
+
+  let larguraAnterior = window.innerWidth;
+  window.addEventListener("resize", () => {
+    // Ignora mudanças só de altura (barra de endereço do celular).
+    const mudouLargura = window.innerWidth !== larguraAnterior;
+    larguraAnterior = window.innerWidth;
+    dimensionar();
+    if (!mudouLargura) return;
+    if (temGsap && !reduzirMovimento) ScrollTrigger.refresh();
+  });
+
+  dimensionar();
+  carregarFrames();
+
+  if (temGsap && !reduzirMovimento) {
+    const estado = { frame: 0 };
+    gsap.timeline({
+      scrollTrigger: { trigger: "#queda", start: "top top", end: CONFIG.queda.duracaoScroll, scrub: 0.5, pin: true, anticipatePin: 1 }
+    })
+      .to(".dica-scroll", { autoAlpha: 0, duration: 0.08 }, 0)
+      .to(estado, { frame: TOTAL - 1, ease: "none", duration: 0.7, onUpdate: () => desenhar(Math.round(estado.frame)) }, 0)
+      .fromTo(".marca", { autoAlpha: 0, y: 40, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.3, ease: "power2.out" }, 0.62)
+      .to(".abertura-frase", { autoAlpha: 0, duration: 0.15 }, 0.55);
+  }
+
+  /* ================= CENA 3: gráficos e contadores ================= */
+  const barras = [...document.querySelectorAll(".barra")];
+  const maximo = Math.max(...barras.map((b) => Number(b.dataset.valor)));
+  barras.forEach((b) => b.style.setProperty("--altura", `${(Number(b.dataset.valor) / maximo) * 100}%`));
+
+  if (temGsap && !reduzirMovimento) {
+    gsap.fromTo(".barra-preenchimento", { scaleY: 0 }, {
+      scaleY: 1, duration: 1.2, ease: "power3.out", stagger: 0.15,
+      scrollTrigger: { trigger: ".grafico", start: "top 75%", once: true }
+    });
+    document.querySelectorAll("[data-contar]").forEach((el) => {
+      const alvo = Number(el.dataset.contar);
+      const obj = { v: 0 };
+      el.textContent = "0";
+      gsap.to(obj, {
+        v: alvo, duration: 1.6, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 85%", once: true },
+        onUpdate: () => { el.textContent = Math.round(obj.v).toLocaleString("pt-BR"); }
+      });
+    });
+  }
+
+  /* ================= CENAS 4 e 5: vídeos sob demanda ================= */
+  function definirFonte(video) {
+    const src = video.dataset.src || (ehMobile ? video.dataset.srcMobile : video.dataset.srcDesktop);
+    if (src && !video.getAttribute("src")) {
+      video.src = src;
+      video.addEventListener("error", () => video.removeAttribute("src"), { once: true });
+    }
+  }
+
+  const videos = document.querySelectorAll(".pessoa-video video, .fundo-loop");
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(({ target: v, isIntersecting }) => {
+      if (isIntersecting) {
+        definirFonte(v);
+        if (!reduzirMovimento) v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { rootMargin: "200px 0px", threshold: 0.25 });
+  videos.forEach((v) => observador.observe(v));
+
+  document.querySelectorAll(".botao-som").forEach((botao) => {
+    botao.addEventListener("click", () => {
+      const video = botao.parentElement.querySelector("video");
+      definirFonte(video);
+      const ligar = video.muted;
+      document.querySelectorAll(".pessoa-video video").forEach((outro) => {
+        if (outro !== video) { outro.muted = true; }
+      });
+      document.querySelectorAll(".botao-som").forEach((b) => { b.textContent = "Ouvir"; b.setAttribute("aria-pressed", "false"); });
+      video.muted = !ligar;
+      if (ligar) { video.currentTime = 0; video.play().catch(() => {}); botao.textContent = "Silenciar"; botao.setAttribute("aria-pressed", "true"); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

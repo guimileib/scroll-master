@@ -1,0 +1,20 @@
+{
+  "name": "scroll-master",
+  "description": "Estúdio completo para sites interativos com scroll: orquestrador, identidade visual, character model, roteiro e vídeos do Flow, SEO/GEO, copy, auditoria e servidor local com recarga automática.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Guilherme"
+  },
+  "keywords": [
+    "site",
+    "scroll",
+    "gsap",
+    "flow",
+    "veo",
+    "branding",
+    "seo",
+    "geo",
+    "personagem",
+    "pt-BR"
+  ]
+}

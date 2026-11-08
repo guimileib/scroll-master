@@ -1,0 +1,20 @@
+{
+  "description": "Scroll Master: mantém o site do projeto rodando localmente e recarrega o navegador a cada mudança.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/servir_site.py\" garantir", "timeout": 20 }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/servir_site.py\" sair", "timeout": 10 }
+        ]
+      }
+    ]
+  }
+}

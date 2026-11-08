@@ -1,0 +1,21 @@
+name: Validar skills
+on: [push, pull_request]
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 scripts/validar_skills.py
+      - name: Testar scripts com projeto de exemplo
+        run: |
+          S=plugins/scroll-master/skills
+          mkdir -p /tmp/exemplo && bash $S/orquestrador-site/scripts/novo-projeto.sh "Exemplo" /tmp/exemplo
+          cp $S/criador-site-experiencia/assets/template-experiencia.html /tmp/exemplo/.scroll-master/05-site/index.html
+          export CLAUDE_PROJECT_DIR=/tmp/exemplo CLAUDE_CODE_REMOTE=true
+          echo '{"tool_input":{"file_path":"/tmp/exemplo/.scroll-master/05-site/index.html"}}' | python3 plugins/scroll-master/hooks/servir_site.py garantir
+          curl -sf http://localhost:4321/ | grep -q __scroll_master_y
+          python3 plugins/scroll-master/hooks/servir_site.py parar
+          python3 $S/especialista-marketing-copy/scripts/checar_limites.py - <<< "{\"instagram\": {\"bio\": \"teste\"}}"
