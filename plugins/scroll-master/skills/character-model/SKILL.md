@@ -15,11 +15,23 @@ Princípio central: **consistência vem de duas coisas, nesta ordem: uma imagem-
 
 1. **Entrada**: descrição, rascunho, ilustração existente ou foto de pessoa real (só com autorização dela). Se o projeto tiver `.scroll-master/01-marca/tokens.json`, leia o `estilo_visual_para_prompts` e a paleta.
 2. **Ficha** em JSON (`references/ficha.md` tem o formato completo) e versão legível em Markdown. Salve em `.scroll-master/02-personagens/<slug>.json` e `<slug>.md`, ou numa pasta `personagens/` fora do Scroll Master.
-3. **Model sheet**: gere com `scripts/montar_prompt.py <ficha> --modo turnaround` o prompt para criar a folha do personagem (frente, 3/4, perfil, costas, expressões) num fundo neutro.
-4. **Imagem-mestre**: o usuário gera 3 a 4 opções, escolhe uma e salva em `referencias/<slug>-mestre.png`. A partir daqui, **toda geração usa essa imagem como referência** quando a ferramenta permitir.
-5. **Prompts por cena** com `scripts/montar_prompt.py <ficha> --modo cena --acao "..." --alvo <ferramenta>`. Só ação, expressão, enquadramento e cenário mudam.
-6. **Teste de consistência** (seção 4) antes de produzir em quantidade.
-7. **Persona para LLM de texto**, se o personagem fala, narra ou atende: `--modo persona`.
+3. **Sequência de prompts**: gere com `scripts/montar_prompt.py <ficha> --modo sequencia` o arquivo `<slug>-prompts.md`, com **todos os prompts numerados na ordem em que devem ser feitos** (seção 4). Se o personagem aparece em cenas do projeto, liste-as antes em `<slug>-cenas.json`, na ordem do roteiro (formato em `references/ficha.md`), para que entrem na sequência.
+4. **Execução guiada**: o usuário segue o arquivo passo a passo. A imagem escolhida no passo 1 vira `referencias/<slug>-mestre.png` e, a partir daí, **toda geração usa essa imagem como referência** quando a ferramenta permitir.
+5. **Prompt avulso** (uma cena nova depois que a sequência já foi feita): `--modo cena --acao "..." --alvo <ferramenta>`; acrescente a cena ao `<slug>-cenas.json` para manter o registro em ordem.
+
+### Ordem obrigatória dos prompts
+
+Sempre que entregar prompts deste personagem, entregue-os **numerados na ordem de execução**, com o que anexar, de qual passo cada um depende e o que conferir antes de seguir. Nunca entregue uma lista solta. A ordem é:
+
+| Etapa | Prompts | Por que nesta ordem |
+|---|---|---|
+| 1. Imagem-mestre | Model sheet; vistas isoladas só como plano B (1a, 1b…) | Tudo depois usa a mestre como referência |
+| 2. Expressões | Uma por expressão da ficha | Viram referências extras para as cenas |
+| 3. Teste de consistência | 3 situações bem diferentes | Encontrar falhas na ficha antes de gastar créditos em cenas |
+| 4. Cenas do projeto | Na ordem do roteiro | Cada cena anexa a mestre (e a expressão usada) |
+| 5. Persona | System prompt para LLM | Independe das imagens; pode ser feita em paralelo |
+
+Se o usuário pedir só uma parte (ex.: "só as cenas"), mantenha a numeração da sequência completa e avise quais passos anteriores precisam estar prontos.
 
 ## 2. O bloco de identidade
 
@@ -41,7 +53,7 @@ Regras: frases curtas e concretas; nada de adjetivos vagos ("fofo", "legal"); na
 - **Restrições** (sempre presentes): o que o personagem nunca faz ou tem ("no mouth", "never holds objects", "always fully inside the frame", "no text on clothing"). Ferramentas seguem melhor instruções positivas, então descreva também o que deve aparecer no lugar.
 - **Ações simples**: uma ação por clipe de vídeo. "Acena e depois pula e depois aponta" em 8 segundos quebra a consistência.
 
-## 4. Teste de consistência
+## 4. Teste de consistência (etapa 3 da sequência)
 
 Gere o personagem em 3 situações bem diferentes (close de rosto feliz, corpo inteiro em ação, cenário novo com outra luz). Para cada uma, confira:
 

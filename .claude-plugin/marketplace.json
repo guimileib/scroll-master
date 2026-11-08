@@ -11,7 +11,7 @@
       "name": "scroll-master",
       "source": "./plugins/scroll-master",
       "description": "Estúdio completo para sites interativos com scroll: orquestrador, identidade visual, character model, roteiro e vídeos do Flow, SEO/GEO, copy, auditoria e servidor local com recarga automática.",
-      "version": "0.2.0"
+      "version": "0.3.0"
     }
   ]
 }

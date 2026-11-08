@@ -23,7 +23,9 @@ Todo o trabalho do estúdio fica dentro de `.scroll-master/`, na raiz do projeto
     │   └── referencias/              # moodboard, imagens aprovadas
     ├── 02-personagens/               # character-model
     │   ├── <slug>.json               # ficha estruturada
-    │   ├── <slug>.md                 # ficha legível + prompts prontos
+    │   ├── <slug>.md                 # ficha legível
+    │   ├── <slug>-cenas.json         # cenas do personagem na ordem do roteiro
+    │   ├── <slug>-prompts.md         # todos os prompts numerados na ordem de execução
     │   └── referencias/<slug>-mestre.png
     ├── 03-seo/                       # especialista-seo-geo
     │   ├── plano-seo.md

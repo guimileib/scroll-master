@@ -32,6 +32,20 @@ A ficha JSON é a fonte da verdade. O `.md` é a versão para leitura humana, ge
 | `voz_audio` | descrição da voz para vídeo/TTS (timbre, idade, sotaque, energia) |
 | `limites` | assuntos fora do escopo, quando passar para humano |
 
+## Cenas do personagem (`<slug>-cenas.json`)
+
+Lista na ordem do roteiro. O modo `sequencia` usa esse arquivo para numerar os prompts das cenas depois dos testes de consistência.
+
+```json
+[
+  { "asset": "cena1-caixote", "acao": "jumps out of a wooden crate and waves", "expressao": "alegre",
+    "enquadramento": "full body, eye level", "cenario": "sunny market stall", "alvo": "video", "proporcao": "9:16" },
+  { "asset": "cena4-convite", "acao": "points to the right and smiles", "expressao": "alegre",
+    "cenario": "market entrance", "fala": "Bora? Chegou tomate fresquinho, colhido hoje cedo.", "alvo": "video", "proporcao": "16:9" }
+]
+```
+`asset` igual ao nome do manifesto do site; `expressao` deve existir em `expressoes` da ficha; `alvo`: `video`, `imagem`, `midjourney` ou `sd`.
+
 ## Exemplo
 
 ```json
