@@ -88,6 +88,12 @@ claude --plugin-dir ./plugins/scroll-master
 /plugin marketplace add ./caminho/para/scroll-master
 ```
 
+No claude.ai (sem hook do servidor local), suba um ZIP por skill em **Customize > Skills**. Os ZIPs ficam em `dist/claude-ai/`; para gerar de novo depois de editar:
+
+```bash
+bash scripts/empacotar_claude_ai.sh
+```
+
 Validar antes de publicar:
 
 ```bash
@@ -118,7 +124,7 @@ Para continuar depois: "onde paramos?".
 
 ## Desenvolvimento
 
-Veja `CLAUDE.md` para as convenções ao editar as skills. Mudou o formato de um arquivo que uma skill entrega? Atualize `contratos.md` e as skills que leem esse arquivo no mesmo commit.
+Veja `CLAUDE.md` para as convenções ao editar as skills. Exemplos prontos ficam em `exemplos/` (o mascote Tomatinho mostra a sequência de prompts do `character-model`). Mudou o formato de um arquivo que uma skill entrega? Atualize `contratos.md` e as skills que leem esse arquivo no mesmo commit.
 
 ## Roteiro
 
