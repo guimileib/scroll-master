@@ -1,6 +1,6 @@
 ---
 name: identidade-visual
-description: Especialista em design de marca que cria o branding e a identidade visual de um negócio e do seu site — estratégia de marca, direções criativas, paleta com contraste verificado, tipografia, logo em SVG, estilo de imagem, princípios de movimento para sites com scroll, voz e manual da marca — e gera os tokens de design (CSS, JSON e Tailwind) que o site usa. Use sempre que o usuário pedir logo, marca, branding, identidade visual, paleta de cores, fontes, manual da marca, "deixar o site com cara de X", redesign, moodboard, estilo visual para prompts de imagem e vídeo, ou quando um site novo ainda não tem identidade definida.
+description: Especialista em design de marca que cria o branding e a identidade visual de um negócio e do seu site — estratégia de marca, direções criativas, paleta com contraste verificado, tipografia, logo em SVG, estilo de imagem, princípios de movimento para sites com scroll, voz e manual da marca — gera os tokens de design (CSS, JSON e Tailwind) e monta a estrutura visual do site (página comparando as direções, design system com biblioteca de componentes, mapa do site e wireframes de cada página), com publicação opcional no Claude Design e aplicações no Canva. Use sempre que o usuário pedir logo, marca, branding, identidade visual, paleta de cores, fontes, manual da marca, "deixar o site com cara de X", redesign, moodboard, design system, biblioteca de componentes, wireframe, mapa do site, estrutura do site, Claude Design, artes no Canva, estilo visual para prompts de imagem e vídeo, ou quando um site novo ainda não tem identidade definida.
 ---
 
 # Identidade Visual
@@ -15,12 +15,14 @@ Princípio central: **toda escolha visual precisa de um motivo ligado ao negóci
 
 1. **Descoberta** (seção 2). Leia `.scroll-master/00-briefing/briefing.md` se existir. Se houver site, Instagram ou logo atual, analise antes de propor.
 2. **Estratégia de marca** em meia página (seção 3).
-3. **Três direções criativas** distintas (seção 4). O usuário escolhe uma ou combina. **Não desenvolva o sistema completo antes da escolha.**
+3. **Três direções criativas** distintas (seção 4), escritas em `direcoes.json` e mostradas lado a lado em `direcoes.html`. O usuário escolhe uma ou combina. **Não desenvolva o sistema completo antes da escolha.**
 4. **Sistema da marca** da direção escolhida (seção 5), lendo `references/sistema-visual.md`.
-5. **Tokens**: escreva `.scroll-master/01-marca/tokens.json` e rode `scripts/gerar_tokens.py` para gerar `tokens.css`, `tailwind.tokens.js`, o relatório de contraste e uma página de prévia.
-6. **Manual** `.scroll-master/01-marca/marca.md` (modelo em `assets/modelo-marca.md`).
+5. **Tokens**: `scripts/gerar_direcoes.py --escolher <id>` cria o `.scroll-master/01-marca/tokens.json`; complete e rode `scripts/gerar_tokens.py` para gerar `tokens.css`, `tailwind.tokens.js` e o relatório de contraste.
+6. **Design system e estrutura** (seção 6): escreva `estrutura.json` e rode `scripts/montar_design_system.py` para gerar `componentes.css`, `design-system.html` e `estrutura.html` (mapa do site + wireframes).
+7. **Manual** `.scroll-master/01-marca/marca.md` (modelo em `assets/modelo-marca.md`).
+8. **Publicar e aplicar** (opcional, seção 7): design system no Claude Design e peças no Canva.
 
-Fora de um projeto do Scroll Master, entregue os mesmos arquivos numa pasta `marca/`.
+Fora de um projeto do Scroll Master, entregue os mesmos arquivos numa pasta `marca/`. Os scripts ficam na pasta desta skill (`${CLAUDE_SKILL_DIR}/scripts/` no Claude Code) e só usam Python com a biblioteca padrão.
 
 ---
 
@@ -57,9 +59,13 @@ Apresente três direções **realmente diferentes** (não três tons da mesma id
 | Experiência de abertura | Uma ideia de cena de abertura do site nessa direção |
 | Riscos | O que pode dar errado nessa direção |
 
-Se houver ferramenta para isso, mostre as direções visualmente (prévias de cor e tipo); senão, descreva com precisão.
+Escreva as três em `.scroll-master/01-marca/direcoes.json` (formato e exemplo em `references/estrutura-e-design-system.md` e `assets/direcoes-exemplo.json`) e rode:
 
-Peça a escolha (ou combinação) antes de seguir.
+```bash
+python3 scripts/gerar_direcoes.py .scroll-master/01-marca/direcoes.json --abrir
+```
+
+A página mostra cada direção nas próprias cores e fontes (título, botões, bloco de cor, cartão) e avisa onde o contraste falha. Use um título real do negócio em `headline_exemplo`: é isso que o usuário vai julgar. Peça a escolha (ou combinação) antes de seguir; depois rode o mesmo script com `--escolher <id>`.
 
 ## 5. Sistema da marca
 
@@ -74,13 +80,36 @@ Detalhes em `references/sistema-visual.md`. Itens obrigatórios:
 7. **Componentes-base**: botão, link, cartão, campo, em estados normal, hover, foco e desativado.
 8. **Aplicações**: post e story do Instagram, foto de perfil, cartão de visita, assinatura de WhatsApp.
 
-## 6. Contra o visual genérico
+## 6. Design system e estrutura do site
+
+Com a marca definida, monte a estrutura em que ela vai morar. Detalhes, formatos e tipos de seção em `references/estrutura-e-design-system.md`; exemplo em `assets/estrutura-exemplo.json`.
+
+1. Escreva `.scroll-master/01-marca/estrutura.json`: páginas (mapa do site, com hierarquia e o que entra no menu) e, para cada página, as seções na ordem, com tipo, título provisório, o que vai no espaço de mídia e o conteúdo obrigatório. Parta do briefing: objetivo da página, ação principal, o que o cliente precisa saber para agir.
+2. Salve os SVGs do logo em `logo/`.
+3. Rode `python3 scripts/montar_design_system.py .scroll-master/01-marca --abrir`. Saem:
+   - `componentes.css`: biblioteca de componentes com os tokens (botões com estados, cartão, campo, cabeçalho, FAQ, CTA fixo no celular...), que o site reaproveita;
+   - `design-system.html`: logo em cada fundo, cores e contraste, tipografia, espaço, movimento, componentes com o HTML de cada um e o bloco de estilo para prompts;
+   - `estrutura.html`: mapa do site e wireframe de cada página com a marca aplicada, com botão para alternar entre celular e computador.
+4. Revise com o usuário (roteiro em `references/estrutura-e-design-system.md`, seção 6) e ajuste os JSON. Os HTML são descartáveis: rode o script de novo a cada mudança.
+
+A estrutura é um **rascunho**: o plano de SEO ajusta as páginas e o roteiro de cenas ajusta as seções, sempre editando o mesmo `estrutura.json`. O ganho de fazê-la aqui é ver a marca aplicada a uma página real antes de aprovar a identidade, e não só numa paleta solta.
+
+## 7. Publicar e aplicar: Claude Design e Canva
+
+Opcional, depois da prévia local aprovada. Como fazer em `references/ferramentas-design.md`.
+
+- **Claude Design** (agora dentro do Claude; o claude.ai/design avulso fecha em 14/12/2026): com a ferramenta Artifact disponível, publique o design system da marca e, se o usuário quiser, telas da estrutura para aprovação visual. Sem a ferramenta, a prévia local é a entrega.
+- **Canva** (com o conector conectado): post, story, capa de destaque, cartão e outras peças que o cliente vai editar sozinho.
+
+Os arquivos locais continuam sendo a fonte da verdade: mudanças feitas nessas ferramentas voltam primeiro para o `tokens.json`.
+
+## 8. Contra o visual genérico
 
 Evite os padrões que fazem todo site parecer feito pelo mesmo gerador: gradiente roxo-azul, Inter/Roboto em tudo, cartões com sombra leve em grade de três, ícones genéricos em círculos, fotos de banco com pessoas sorrindo para o notebook. Procure a especificidade do negócio: uma textura do lugar, uma cor da fachada, uma fonte com o caráter da região ou do ofício, um elemento gráfico tirado do produto.
 
 Ousadia em um ou dois elementos, disciplina no resto.
 
-## 7. Regras
+## 9. Regras
 
 - Não copie marcas existentes nem crie logos parecidos com os de concorrentes ou marcas famosas.
 - Não use fontes sem licença para web. Confira a licença quando sair do Google Fonts.

@@ -1,0 +1,120 @@
+{
+  "marca": "Bom Dia",
+  "direcoes": [
+    {
+      "id": "a",
+      "nome": "Feira de domingo",
+      "conceito": "Banca de feira com caixotes de madeira e letreiro pintado à mão.",
+      "palavras": [
+        "fresco",
+        "vizinho",
+        "colorido"
+      ],
+      "cores": {
+        "fundo": "#F6F1E4",
+        "superficie": "#FFFFFF",
+        "texto": "#22301A",
+        "texto-suave": "#56604C",
+        "primaria": "#2F6B2A",
+        "destaque": "#B8460E",
+        "sobre-primaria": "#FFFFFF"
+      },
+      "fontes": {
+        "titulo": {
+          "familia": "Bricolage Grotesque",
+          "pesos": [
+            700,
+            800
+          ],
+          "google": true
+        },
+        "texto": {
+          "familia": "Karla",
+          "pesos": [
+            400,
+            600
+          ],
+          "google": true
+        }
+      },
+      "raio": "suave",
+      "headline_exemplo": "Colhido hoje cedo, na sua mesa no almoço",
+      "imagem": "Fotos de mãos e caixotes, luz da manhã",
+      "movimento": "Orgânico: frutas caem e assentam",
+      "abertura": "Tomates caem no caixote ao rolar",
+      "riscos": "Pode parecer rústico demais"
+    },
+    {
+      "id": "b",
+      "nome": "Mercado moderno",
+      "conceito": "Prateleira limpa, tipografia grande e muito branco.",
+      "palavras": [
+        "prático",
+        "limpo"
+      ],
+      "cores": {
+        "fundo": "#FFFFFF",
+        "superficie": "#F2F4F3",
+        "texto": "#111111",
+        "texto-suave": "#5A5F5C",
+        "primaria": "#0E5E4A",
+        "destaque": "#E8B40C",
+        "sobre-primaria": "#FFFFFF"
+      },
+      "fontes": {
+        "titulo": {
+          "familia": "Space Grotesk",
+          "pesos": [
+            600
+          ],
+          "google": true
+        },
+        "texto": {
+          "familia": "Karla",
+          "pesos": [
+            400
+          ],
+          "google": true
+        }
+      },
+      "raio": "reto",
+      "riscos": "Destaque amarelo não passa com texto branco"
+    },
+    {
+      "id": "c",
+      "nome": "Quitanda afetiva",
+      "conceito": "Ilustração em aquarela e caderno de receitas.",
+      "palavras": [
+        "afeto",
+        "casa"
+      ],
+      "cores": {
+        "fundo": "#FFF8F0",
+        "superficie": "#FFFFFF",
+        "texto": "#3A2420",
+        "texto-suave": "#6E5650",
+        "primaria": "#A33B2B",
+        "destaque": "#2E6B5E",
+        "sobre-primaria": "#FFFFFF"
+      },
+      "fontes": {
+        "titulo": {
+          "familia": "Fraunces",
+          "pesos": [
+            600
+          ],
+          "google": true
+        },
+        "texto": {
+          "familia": "Nunito Sans",
+          "pesos": [
+            400,
+            700
+          ],
+          "google": true
+        }
+      },
+      "raio": "pilula"
+    }
+  ]
+}

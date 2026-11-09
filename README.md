@@ -9,7 +9,7 @@ Autor: Guilherme.
 | Skill | O que faz |
 |---|---|
 | `orquestrador-site` | Coordena o projeto inteiro: cria a pasta `.scroll-master`, conduz as etapas, controla o `estado.md` e as aprovações |
-| `identidade-visual` | Estratégia de marca, 3 direções criativas, sistema visual, logo em SVG, tokens (CSS/JSON/Tailwind) com contraste verificado |
+| `identidade-visual` | Estratégia de marca, 3 direções criativas comparadas lado a lado, sistema visual, logo em SVG, tokens (CSS/JSON/Tailwind) com contraste verificado, design system com biblioteca de componentes, mapa do site e wireframes; publicação opcional no Claude Design e peças no Canva |
 | `character-model` | Ficha de personagem e model sheet; prompts consistentes para qualquer gerador de imagem/vídeo e persona para qualquer LLM |
 | `especialista-seo-geo` | Plano de SEO/GEO antes do site e implementação depois (schema, sitemap, robots, llms.txt, requisitos de sites animados) |
 | `especialista-marketing-copy` | Textos que vendem: headlines, CTAs, seções da página, mensagens de WhatsApp |

@@ -15,7 +15,7 @@ Princípio central: **cada etapa produz arquivos, e a etapa seguinte lê esses a
 
 | Skill | Papel | Lê | Escreve |
 |---|---|---|---|
-| `identidade-visual` | Marca e identidade do site | briefing | `.scroll-master/01-marca/` |
+| `identidade-visual` | Marca, design system e estrutura do site (mapa e wireframes) | briefing | `.scroll-master/01-marca/` |
 | `character-model` | Personagens consistentes (mascote, narrador, pessoas ilustrativas) | briefing, marca | `.scroll-master/02-personagens/` |
 | `especialista-seo-geo` | Plano de SEO/GEO antes do site e implementação durante | briefing, marca | `.scroll-master/03-seo/`, ajustes em `.scroll-master/05-site/` |
 | `especialista-marketing-copy` | Textos do site, CTAs, mensagens | briefing, plano SEO | textos dentro de `.scroll-master/04-experiencia/roteiro.md` e `.scroll-master/05-site/` |
@@ -37,7 +37,7 @@ Os formatos exatos de cada arquivo estão em `references/contratos.md`. Leia ant
 | Etapa | Skill | Entrega | Aprovação do usuário |
 |---|---|---|---|
 | 0. Briefing | orquestrador | `.scroll-master/00-briefing/briefing.md` | **G1**: briefing confirmado |
-| 1. Identidade | `identidade-visual` | direções criativas → sistema da marca | **G2**: direção escolhida |
+| 1. Identidade e estrutura | `identidade-visual` | direções lado a lado (`direcoes.html`) → sistema da marca → design system e estrutura (`design-system.html`, `estrutura.html`) | **G2**: direção escolhida; estrutura revisada |
 | 2. Personagens (se houver) | `character-model` | ficha + prompt de model sheet | escolha da imagem-mestre |
 | 3. Plano SEO/GEO | `especialista-seo-geo` | `plano-seo.md` com páginas, palavras e conteúdo obrigatório | — |
 | 4. Roteiro e textos | `criador-site-experiencia` + `especialista-marketing-copy` | roteiro de cenas com textos reais | **G3**: roteiro aprovado |
@@ -51,6 +51,7 @@ Os formatos exatos de cada arquivo estão em `references/contratos.md`. Leia ant
 Regras do pipeline:
 - **Não pule aprovações.** Mudar a marca depois de 40 vídeos gerados custa caro; por isso G2 vem antes de qualquer prompt.
 - **Etapas opcionais**: personagens só se houver mascote, narrador ou pessoas ilustrativas; auditoria só com o site no ar (ou para auditar o site antigo, no início, como diagnóstico).
+- **Estrutura viva**: `.scroll-master/01-marca/estrutura.json` nasce como rascunho na etapa 1, o plano de SEO (etapa 3) ajusta as páginas e o roteiro (etapa 4) ajusta as seções. Quem muda o arquivo roda `montar_design_system.py` de novo para o wireframe acompanhar.
 - **Paralelo permitido**: enquanto o usuário gera vídeos (etapa 6), avance a etapa 8.
 - **Modo parcial**: se o usuário pedir só uma parte ("só a marca", "só os prompts"), chame direto a skill e ainda assim grave os arquivos na estrutura, para o projeto poder crescer depois.
 

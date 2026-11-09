@@ -56,6 +56,16 @@ Contraste verificado em `contraste.md`.
 ## 9. Aplicações
 [Perfil do Instagram, posts, stories, cartão, assinatura]
 
+| Peça | Onde está | Observação (ex.: fonte substituída no Canva) |
+|---|---|---|
+| | | |
+
+## 9b. Design system e estrutura
+- Direções comparadas: `direcoes.html` (escolhida: [id])
+- Design system: `design-system.html` · componentes: `componentes.css`
+- Estrutura (mapa do site e wireframes): `estrutura.html`, gerado de `estrutura.json`
+- Claude Design: [link do artifact, se publicado]
+
 ## 10. Histórico de mudanças
 | Data | Mudança | Motivo |
 |---|---|---|

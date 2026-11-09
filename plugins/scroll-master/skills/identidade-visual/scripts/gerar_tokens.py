@@ -80,13 +80,24 @@ def gerar_css(t):
         for k, v in t["cores_escuro"].items():
             linhas.append(f"    --cor-{k}: {v};")
         linhas.append("  }\n}")
-    fontes_google = [f for f in t.get("fontes", {}).values() if f.get("google")]
-    if fontes_google:
-        familias = "&".join(
-            "family=" + f["familia"].replace(" ", "+") + ":wght@" + ";".join(str(p) for p in sorted(f.get("pesos", [400])))
-            for f in fontes_google)
-        linhas.insert(1, f"/* <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?{familias}&display=swap\"> */")
+    url = url_google_fonts(t.get("fontes", {}).values())
+    if url:
+        linhas.insert(1, f"/* <link rel=\"stylesheet\" href=\"{url}\"> */")
     return "\n".join(linhas) + "\n"
+
+
+def url_google_fonts(fontes):
+    """URL do Google Fonts para as fontes com "google": true (junta pesos da mesma família)."""
+    pesos = {}
+    for f in fontes:
+        if f.get("google"):
+            pesos.setdefault(f["familia"], set()).update(f.get("pesos", [400]))
+    if not pesos:
+        return ""
+    familias = "&".join(
+        "family=" + nome.replace(" ", "+") + ":wght@" + ";".join(str(p) for p in sorted(ps))
+        for nome, ps in pesos.items())
+    return f"https://fonts.googleapis.com/css2?{familias}&display=swap"
 
 
 def gerar_tailwind(t):
@@ -118,8 +129,10 @@ def gerar_previa(t, css):
         f'<div class="amostra"><div class="cor" style="background:{v}"></div><b>{k}</b><code>{v}</code></div>'
         for k, v in c.items())
     titulo = t.get("marca", "Marca")
+    url = url_google_fonts(t.get("fontes", {}).values())
+    link = f'<link rel="stylesheet" href="{url}">' if url else ""
     return f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>Prévia — {titulo}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Prévia — {titulo}</title>{link}
 <style>{css}
 body{{margin:0;background:var(--cor-fundo);color:var(--cor-texto);font-family:var(--fonte-texto);font-size:var(--texto-base);line-height:1.6}}
 main{{max-width:960px;margin:0 auto;padding:48px 20px}}
@@ -140,6 +153,10 @@ h1,h2{{font-family:var(--fonte-titulo);line-height:1;margin:0 0 .4em}} h1{{font-
 
 
 def main():
+    # Console do Windows (cp1252) não imprime ✔/✘: força UTF-8 em vez de quebrar no fim.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
     args = sys.argv[1:]
     if not args:
         print(__doc__)

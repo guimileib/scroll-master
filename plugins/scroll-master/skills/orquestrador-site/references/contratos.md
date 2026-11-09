@@ -19,6 +19,10 @@ Todo o trabalho do estúdio fica dentro de `.scroll-master/`, na raiz do projeto
     │   ├── tokens.json               # fonte da verdade de cores, fontes, espaçamentos, movimento
     │   ├── tokens.css                # gerado a partir do tokens.json
     │   ├── tailwind.tokens.js        # gerado (opcional, para Astro + Tailwind)
+    │   ├── direcoes.json             # as 3 direções criativas (antes da escolha)
+    │   ├── estrutura.json            # mapa do site + seções de cada página (rascunho vivo)
+    │   ├── componentes.css           # gerado: biblioteca de componentes com os tokens (copiada para o site)
+    │   ├── direcoes.html, design-system.html, estrutura.html   # prévias geradas (descartáveis)
     │   ├── logo/                     # SVGs
     │   └── referencias/              # moodboard, imagens aprovadas
     ├── 02-personagens/               # character-model
@@ -67,6 +71,30 @@ Modelo em `assets/briefing.md`. Campos obrigatórios: negócio, cidade/área, p�
 }
 ```
 `estilo_visual_para_prompts` é o elo entre marca e vídeos: o criador de site e o character-model colam esse bloco em todos os prompts.
+
+## 01-marca/direcoes.json
+Escrito pela `identidade-visual` antes da escolha da direção. Lista `direcoes`, cada uma com `id`, `nome`, `conceito`, as 7 cores do tokens.json e as fontes `titulo` e `texto`. Opcionais: `palavras`, `raio` (`reto`/`suave`/`pilula`), `headline_exemplo`, `cta_exemplo`, `imagem`, `movimento`, `abertura`, `riscos`. Formato completo em `identidade-visual/references/estrutura-e-design-system.md`. Lido por `gerar_direcoes.py`, que gera `direcoes.html` e, com `--escolher`, o `tokens.json` inicial.
+
+## 01-marca/estrutura.json
+Mapa do site e seções de cada página. **Rascunho vivo** com três donos, em ordem:
+1. `identidade-visual` cria (etapa 1);
+2. `especialista-seo-geo` ajusta as páginas (`slug`, `titulo`, `pai`, `nav`) e o `conteudo` obrigatório das seções (etapa 3); o `plano-seo.md` manda em caso de conflito;
+3. `criador-site-experiencia` ajusta as seções quando o roteiro é aprovado (`tipo`, ordem, `cena`, `midia`, `titulo`) (etapa 4); o `roteiro.md` manda em caso de conflito.
+
+```json
+{
+  "paginas": [
+    { "slug": "/", "titulo": "Início", "objetivo": "...", "nav": true, "pai": null,
+      "secoes": [ { "id": "abertura", "tipo": "hero-video", "cena": 1, "titulo": "...", "texto": "...",
+                    "midia": "...", "objetivo": "...", "conteudo": ["..."], "itens": ["..."] } ] }
+  ],
+  "navegacao": { "cta": { "texto": "Pedir no WhatsApp", "destino": "whatsapp" } }
+}
+```
+Obrigatórios: `paginas[].slug`, `paginas[].titulo`, `secoes[].tipo`; `pai` precisa ser um slug existente. Tipos de seção: `hero`, `hero-video`, `cena-scroll`, `texto-imagem`, `grade-cards`, `numeros`, `depoimentos`, `galeria`, `faq`, `cta`, `mapa-contato`, `formulario`, `texto`. Quem altera roda `identidade-visual/scripts/montar_design_system.py .scroll-master/01-marca` para atualizar `estrutura.html`.
+
+## 01-marca/componentes.css
+Gerado por `montar_design_system.py` a partir dos tokens (classes `sm-*`). O criador de site copia para a pasta do site junto com `tokens.css`. Se a primeira linha deixar de ser o cabeçalho "Gerado por montar_design_system.py", o arquivo foi editado à mão e o script não o sobrescreve mais.
 
 ## 02-personagens/<slug>.json
 Formato definido na skill `character-model` (`references/ficha.md`). Campos usados pelas outras skills: `bloco_identidade` (texto canônico para colar nos prompts), `referencias` (caminho da imagem-mestre), `restricoes`, `voz` (se fala).

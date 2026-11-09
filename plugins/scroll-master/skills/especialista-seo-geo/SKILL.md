@@ -28,7 +28,7 @@ Use o modelo `assets/modelo-plano-seo.md`. Passos:
 
 1. **Contexto**: leia o briefing. Negócio local, regional ou nacional muda tudo.
 2. **Consultas-alvo**: monte grupos de marca, serviço + local, problemas/perguntas e comparação. Faça buscas reais na web para ver **o que aparece** em cada consulta (tipo de página, concorrentes, diretórios, se há mapa local). Isso mostra a intenção de busca. **Não invente volume de busca**; se o usuário tiver Search Console, Planejador de Palavras-chave ou outra ferramenta, peça os dados.
-3. **Arquitetura de páginas**: uma página por intenção relevante. Regra prática:
+3. **Arquitetura de páginas**: parta do rascunho em `.scroll-master/01-marca/estrutura.json` (se existir) e, ao fechar a arquitetura, atualize nele as páginas (`slug`, `titulo`, `pai`) e o `conteudo` obrigatório de cada seção, rodando de novo `montar_design_system.py` da skill `identidade-visual`. O plano manda; o arquivo só precisa refletir o plano. Uma página por intenção relevante. Regra prática:
    - Negócio com 1 serviço principal: home forte + contato (+ FAQ dentro da home).
    - Vários serviços: home + uma página por serviço principal + sobre + contato.
    - Atende várias cidades/bairros: páginas por local **só** com conteúdo próprio de verdade (fotos, depoimentos, detalhes daquele local).

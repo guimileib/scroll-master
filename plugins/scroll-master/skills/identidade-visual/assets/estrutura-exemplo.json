@@ -1,0 +1,105 @@
+{
+  "paginas": [
+    {
+      "slug": "/",
+      "titulo": "Início",
+      "objetivo": "Levar ao pedido no WhatsApp",
+      "secoes": [
+        {
+          "id": "abertura",
+          "tipo": "hero-video",
+          "cena": 1,
+          "titulo": "Colhido hoje cedo",
+          "texto": "Frutas e verduras do produtor para sua mesa.",
+          "midia": "tomates caindo no caixote",
+          "conteudo": [
+            "H1 com cidade",
+            "CTA WhatsApp"
+          ]
+        },
+        {
+          "id": "origem",
+          "tipo": "cena-scroll",
+          "cena": 2,
+          "titulo": "Do sítio à banca em 3 horas"
+        },
+        {
+          "id": "numeros",
+          "tipo": "numeros",
+          "itens": [
+            "+20 anos",
+            "300 famílias",
+            "4,9 no Google"
+          ]
+        },
+        {
+          "id": "produtos",
+          "tipo": "grade-cards",
+          "titulo": "O que tem hoje",
+          "itens": [
+            "Frutas",
+            "Verduras",
+            "Ovos caipiras"
+          ]
+        },
+        {
+          "id": "depo",
+          "tipo": "depoimentos",
+          "titulo": "Quem compra"
+        },
+        {
+          "id": "duvidas",
+          "tipo": "faq",
+          "titulo": "Perguntas",
+          "itens": [
+            "Entregam?",
+            "Aceitam Pix?"
+          ]
+        },
+        {
+          "id": "fim",
+          "tipo": "cta",
+          "titulo": "Peça até as 10h, receba no almoço"
+        },
+        {
+          "id": "onde",
+          "tipo": "mapa-contato",
+          "titulo": "Onde estamos"
+        }
+      ]
+    },
+    {
+      "slug": "/sobre",
+      "titulo": "Nossa história",
+      "pai": "/",
+      "secoes": [
+        {
+          "tipo": "texto-imagem",
+          "titulo": "Desde 2004"
+        },
+        {
+          "tipo": "galeria",
+          "titulo": "A banca"
+        }
+      ]
+    },
+    {
+      "slug": "/entrega",
+      "titulo": "Entrega",
+      "pai": "/",
+      "nav": false,
+      "secoes": [
+        {
+          "tipo": "formulario",
+          "titulo": "Cadastre seu endereço"
+        }
+      ]
+    }
+  ],
+  "navegacao": {
+    "cta": {
+      "texto": "Pedir no WhatsApp",
+      "destino": "whatsapp"
+    }
+  }
+}
