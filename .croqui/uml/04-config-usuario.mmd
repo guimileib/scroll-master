@@ -1,0 +1,23 @@
+---
+title: Preferências do usuário e chave da API
+---
+%% A chave nunca vai para arquivo nem para a conversa: o scroll-master.json guarda só o NOME da variável.
+sequenceDiagram
+  actor U as usuário
+  participant A as agente
+  participant P as config_usuario.py
+  participant J as scroll-master.json
+  participant T as terminal do usuário
+  A->>P: mostrar · pendentes
+  P->>J: lê
+  P-->>A: geracao.video.modo ainda não respondido
+  A->>U: vídeos manual, api ou mcp?
+  U-->>A: api, com Higgsfield
+  A->>P: definir geracao.video.modo api
+  A->>P: definir geracao.video.variavel_chave HIGGSFIELD_API_KEY
+  P->>J: grava (nome da variável, nunca a chave)
+  A->>U: rode export ou setx com a chave e reabra o Claude Code
+  U->>T: setx HIGGSFIELD_API_KEY "..."
+  A->>P: chave HIGGSFIELD_API_KEY
+  P-->>A: definida (o valor não é mostrado)
+  Note over A,J: próximas sessões leem o arquivo e não perguntam de novo

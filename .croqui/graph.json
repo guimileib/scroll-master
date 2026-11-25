@@ -1,0 +1,581 @@
+{
+  "croqui": 1,
+  "project": {
+    "name": "scroll-master",
+    "stack": "code/structure",
+    "root": "G:\\scroll-master",
+    "croqui_version": "0.6.2"
+  },
+  "stats": {
+    "module": 12,
+    "external": 1,
+    "entry": 12
+  },
+  "nodes": [
+    {
+      "id": "entry:plugins/scroll-master/skills/auditoria-seo-geo/scripts/analisar_pagina.py",
+      "kind": "entry",
+      "label": "analisar_pagina",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/auditoria-seo-geo/scripts/analisar_pagina.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 309,
+        "summary": "Analisa sinais de SEO/GEO de uma página HTML e de um robots.txt. Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/skills/especialista-marketing-copy/scripts/checar_limites.py",
+      "kind": "entry",
+      "label": "checar_limites",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/especialista-marketing-copy/scripts/checar_limites.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 93,
+        "summary": "Confere limites de caracteres de peças de copy. Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/skills/orquestrador-site/scripts/config_usuario.py",
+      "kind": "entry",
+      "label": "config_usuario",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/orquestrador-site/scripts/config_usuario.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 210,
+        "summary": "Lê e grava o scroll-master.json: as preferências do usuário que valem para todos os projetos"
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py",
+      "kind": "entry",
+      "label": "gerar_direcoes",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 222,
+        "summary": "Monta a página de comparação das direções criativas (direcoes.html) a partir de direcoes.json,"
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/skills/especialista-seo-geo/scripts/gerar_seo.py",
+      "kind": "entry",
+      "label": "gerar_seo",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/especialista-seo-geo/scripts/gerar_seo.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 180,
+        "summary": "Gera arquivos de SEO a partir de .scroll-master/03-seo/schema.json. Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/skills/identidade-visual/scripts/gerar_tokens.py",
+      "kind": "entry",
+      "label": "gerar_tokens",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/identidade-visual/scripts/gerar_tokens.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 185,
+        "summary": "Gera tokens.css, tailwind.tokens.js, um relatório de contraste (WCAG) e uma prévia HTML"
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/skills/orquestrador-site/scripts/migrar_projeto.py",
+      "kind": "entry",
+      "label": "migrar_projeto",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/orquestrador-site/scripts/migrar_projeto.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 139,
+        "summary": "Migra um projeto do Scroll Master criado antes dos consultores (contrato 1) para o contrato 2."
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py",
+      "kind": "entry",
+      "label": "montar_design_system",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 487,
+        "summary": "Monta o design system e a estrutura do site a partir da pasta da marca. Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/skills/character-model/scripts/montar_prompt.py",
+      "kind": "entry",
+      "label": "montar_prompt",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/character-model/scripts/montar_prompt.py",
+        "lang": "python",
+        "how": "dir",
+        "line": 341,
+        "summary": "Monta prompts consistentes a partir de uma ficha de personagem (JSON). Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/hooks/servidor_local.py",
+      "kind": "entry",
+      "label": "servidor_local",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/hooks/servidor_local.py",
+        "lang": "python",
+        "how": "main-guard",
+        "line": 160,
+        "summary": "Servidor local do Scroll Master (só biblioteca padrão)."
+      }
+    },
+    {
+      "id": "entry:plugins/scroll-master/hooks/servir_site.py",
+      "kind": "entry",
+      "label": "servir_site",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/hooks/servir_site.py",
+        "lang": "python",
+        "how": "main-guard",
+        "line": 234,
+        "summary": "Controla o servidor local do site de um projeto Scroll Master (só biblioteca padrão)."
+      }
+    },
+    {
+      "id": "entry:scripts/validar_skills.py",
+      "kind": "entry",
+      "label": "validar_skills",
+      "group": "scripts",
+      "meta": {
+        "file": "scripts/validar_skills.py",
+        "lang": "python",
+        "how": "dir",
+        "summary": "Valida as skills do repositório (só biblioteca padrão). Rode na raiz do repo:"
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/auditoria-seo-geo/scripts/analisar_pagina.py",
+      "kind": "module",
+      "label": "analisar_pagina",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/auditoria-seo-geo/scripts/analisar_pagina.py",
+        "lang": "python",
+        "lines": 310,
+        "classes": [
+          "Coletor"
+        ],
+        "functions": [
+          "ler",
+          "meta",
+          "tipos_schema",
+          "analisar_pagina",
+          "analisar_robots",
+          "imprimir_md",
+          "main"
+        ],
+        "summary": "Analisa sinais de SEO/GEO de uma página HTML e de um robots.txt. Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/especialista-marketing-copy/scripts/checar_limites.py",
+      "kind": "module",
+      "label": "checar_limites",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/especialista-marketing-copy/scripts/checar_limites.py",
+        "lang": "python",
+        "lines": 94,
+        "functions": [
+          "main"
+        ],
+        "summary": "Confere limites de caracteres de peças de copy. Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/orquestrador-site/scripts/config_usuario.py",
+      "kind": "module",
+      "label": "config_usuario",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/orquestrador-site/scripts/config_usuario.py",
+        "lang": "python",
+        "lines": 211,
+        "functions": [
+          "caminho_config",
+          "mesclar",
+          "ler",
+          "gravar",
+          "obter",
+          "definir",
+          "interpretar",
+          "parece_chave",
+          "status_chaves",
+          "instrucao_chave",
+          "sair",
+          "main"
+        ],
+        "summary": "Lê e grava o scroll-master.json: as preferências do usuário que valem para todos os projetos"
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py",
+      "kind": "module",
+      "label": "gerar_direcoes",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py",
+        "lang": "python",
+        "lines": 223,
+        "functions": [
+          "validar",
+          "falhas_contraste",
+          "cartao",
+          "gerar_html",
+          "tokens_da_direcao",
+          "main"
+        ],
+        "summary": "Monta a página de comparação das direções criativas (direcoes.html) a partir de direcoes.json,"
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/especialista-seo-geo/scripts/gerar_seo.py",
+      "kind": "module",
+      "label": "gerar_seo",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/especialista-seo-geo/scripts/gerar_seo.py",
+        "lang": "python",
+        "lines": 181,
+        "functions": [
+          "aviso",
+          "pendencias",
+          "absoluto",
+          "gerar_schema",
+          "gerar_robots",
+          "gerar_sitemap",
+          "gerar_llms",
+          "validar",
+          "main"
+        ],
+        "summary": "Gera arquivos de SEO a partir de .scroll-master/03-seo/schema.json. Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/identidade-visual/scripts/gerar_tokens.py",
+      "kind": "module",
+      "label": "gerar_tokens",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/identidade-visual/scripts/gerar_tokens.py",
+        "lang": "python",
+        "lines": 186,
+        "functions": [
+          "hex_rgb",
+          "luminancia",
+          "contraste",
+          "escala",
+          "familia_css",
+          "gerar_css",
+          "url_google_fonts",
+          "gerar_tailwind",
+          "relatorio",
+          "gerar_previa",
+          "main"
+        ],
+        "summary": "Gera tokens.css, tailwind.tokens.js, um relatório de contraste (WCAG) e uma prévia HTML"
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/orquestrador-site/scripts/migrar_projeto.py",
+      "kind": "module",
+      "label": "migrar_projeto",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/orquestrador-site/scripts/migrar_projeto.py",
+        "lang": "python",
+        "lines": 140,
+        "functions": [
+          "sair",
+          "main"
+        ],
+        "summary": "Migra um projeto do Scroll Master criado antes dos consultores (contrato 1) para o contrato 2."
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py",
+      "kind": "module",
+      "label": "montar_design_system",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py",
+        "lang": "python",
+        "lines": 488,
+        "functions": [
+          "ler_json",
+          "cabeca",
+          "topo",
+          "secao_logo",
+          "secao_cores",
+          "secao_tipografia",
+          "secao_espaco",
+          "secao_movimento",
+          "secao_componentes",
+          "secao_prompts",
+          "design_system_html",
+          "validar_estrutura"
+        ],
+        "summary": "Monta o design system e a estrutura do site a partir da pasta da marca. Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/skills/character-model/scripts/montar_prompt.py",
+      "kind": "module",
+      "label": "montar_prompt",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/skills/character-model/scripts/montar_prompt.py",
+        "lang": "python",
+        "lines": 342,
+        "functions": [
+          "carregar",
+          "estilo",
+          "ancoras",
+          "restricoes",
+          "expressao",
+          "turnaround",
+          "negativo",
+          "cena",
+          "persona",
+          "prompt_vista",
+          "prompt_expressao",
+          "carregar_cenas"
+        ],
+        "summary": "Monta prompts consistentes a partir de uma ficha de personagem (JSON). Só usa a biblioteca padrão."
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/hooks/servidor_local.py",
+      "kind": "module",
+      "label": "servidor_local",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/hooks/servidor_local.py",
+        "lang": "python",
+        "lines": 161,
+        "classes": [
+          "Handler"
+        ],
+        "functions": [
+          "versao",
+          "main"
+        ],
+        "summary": "Servidor local do Scroll Master (só biblioteca padrão)."
+      }
+    },
+    {
+      "id": "module:plugins/scroll-master/hooks/servir_site.py",
+      "kind": "module",
+      "label": "servir_site",
+      "group": "plugins",
+      "meta": {
+        "file": "plugins/scroll-master/hooks/servir_site.py",
+        "lang": "python",
+        "lines": 239,
+        "functions": [
+          "ler_evento",
+          "achar_projeto",
+          "config",
+          "porta_ocupada",
+          "processo_vivo",
+          "arquivo_estado",
+          "estado_atual",
+          "tipo_site",
+          "iniciar",
+          "parar",
+          "arquivo_relevante",
+          "contexto"
+        ],
+        "summary": "Controla o servidor local do site de um projeto Scroll Master (só biblioteca padrão)."
+      }
+    },
+    {
+      "id": "module:scripts/validar_skills.py",
+      "kind": "module",
+      "label": "validar_skills",
+      "group": "scripts",
+      "meta": {
+        "file": "scripts/validar_skills.py",
+        "lang": "python",
+        "lines": 130,
+        "functions": [
+          "frontmatter"
+        ],
+        "summary": "Valida as skills do repositório (só biblioteca padrão). Rode na raiz do repo:"
+      }
+    },
+    {
+      "id": "external:gerar_tokens",
+      "kind": "external",
+      "label": "gerar_tokens",
+      "group": "dependências",
+      "meta": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "entry:plugins/scroll-master/hooks/servidor_local.py",
+      "to": "module:plugins/scroll-master/hooks/servidor_local.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/hooks/servidor_local.py:160"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/hooks/servir_site.py",
+      "to": "module:plugins/scroll-master/hooks/servir_site.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/hooks/servir_site.py:234"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/auditoria-seo-geo/scripts/analisar_pagina.py",
+      "to": "module:plugins/scroll-master/skills/auditoria-seo-geo/scripts/analisar_pagina.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/auditoria-seo-geo/scripts/analisar_pagina.py:309"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/character-model/scripts/montar_prompt.py",
+      "to": "module:plugins/scroll-master/skills/character-model/scripts/montar_prompt.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/character-model/scripts/montar_prompt.py:341"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/especialista-marketing-copy/scripts/checar_limites.py",
+      "to": "module:plugins/scroll-master/skills/especialista-marketing-copy/scripts/checar_limites.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/especialista-marketing-copy/scripts/checar_limites.py:93"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/especialista-seo-geo/scripts/gerar_seo.py",
+      "to": "module:plugins/scroll-master/skills/especialista-seo-geo/scripts/gerar_seo.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/especialista-seo-geo/scripts/gerar_seo.py:180"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py",
+      "to": "module:plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py:222"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/identidade-visual/scripts/gerar_tokens.py",
+      "to": "module:plugins/scroll-master/skills/identidade-visual/scripts/gerar_tokens.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/identidade-visual/scripts/gerar_tokens.py:185"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py",
+      "to": "module:plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py:487"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/orquestrador-site/scripts/config_usuario.py",
+      "to": "module:plugins/scroll-master/skills/orquestrador-site/scripts/config_usuario.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/orquestrador-site/scripts/config_usuario.py:210"
+      ]
+    },
+    {
+      "from": "entry:plugins/scroll-master/skills/orquestrador-site/scripts/migrar_projeto.py",
+      "to": "module:plugins/scroll-master/skills/orquestrador-site/scripts/migrar_projeto.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/orquestrador-site/scripts/migrar_projeto.py:139"
+      ]
+    },
+    {
+      "from": "entry:scripts/validar_skills.py",
+      "to": "module:scripts/validar_skills.py",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "scripts/validar_skills.py"
+      ]
+    },
+    {
+      "from": "module:plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py",
+      "to": "external:gerar_tokens",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/identidade-visual/scripts/gerar_direcoes.py:24"
+      ]
+    },
+    {
+      "from": "module:plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py",
+      "to": "external:gerar_tokens",
+      "kind": "calls",
+      "confidence": "static",
+      "ops": [],
+      "evidence": [
+        "plugins/scroll-master/skills/identidade-visual/scripts/montar_design_system.py:29"
+      ]
+    }
+  ]
+}

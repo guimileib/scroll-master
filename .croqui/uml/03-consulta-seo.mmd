@@ -1,0 +1,18 @@
+---
+title: Uma consulta de SEO/GEO (ponto C2)
+---
+sequenceDiagram
+  participant O as orquestrador
+  participant S as consultor-seo-geo
+  participant C as consultas/
+  participant R as criador-site-experiencia
+  participant E as estado.md
+  O->>S: C2 · projeto · ler roteiro.md e seo-c1 · escrever só em consultas/
+  S->>C: seo-c2-roteiro.md (B1 bloqueante · R1 R2 recomendados)
+  S-->>O: 5 linhas · 1 bloqueante: preço só aparece no vídeo da cena 3
+  O->>E: pareceres: C2 · 1 bloqueante aberto
+  O->>R: aplicar B1 no roteiro (dono do arquivo)
+  R-->>O: preço em texto HTML na seção números
+  O->>S: C2 de novo · conferir bloqueantes anteriores
+  S->>C: seo-c2-roteiro.md · C2-B1 atendido
+  Note over O: sem bloqueante aberto, G3 liberado para o usuário

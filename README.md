@@ -92,6 +92,19 @@ O estúdio cria **uma única pasta**, `.scroll-master/`, na raiz do projeto. Cad
 
 Os formatos de cada arquivo estão em `plugins/scroll-master/skills/orquestrador-site/references/contratos.md`.
 
+## Mapa e arquitetura (croqui)
+
+O desenho da orquestração dos agentes, o PRD e o mapa dos scripts ficam em `.croqui/`, gerados com o [croqui](https://pypi.org/project/croqui/):
+
+- `.croqui/prd/`: visão geral do produto e a arquitetura v2 (fases, contratos e decisões).
+- `.croqui/uml/`: orquestração dos agentes, pipeline com gates e consultas, uma consulta de SEO passo a passo, preferências do usuário, scroll-loop e stop motion.
+
+```bash
+pipx install croqui
+croqui serve        # abre o mapa com as abas mapa, PRD e UML em localhost:7777
+croqui build        # gera .croqui/croqui.html, um arquivo só para compartilhar
+```
+
 ## Instalação
 
 Pelo GitHub (depois de publicar o repo):

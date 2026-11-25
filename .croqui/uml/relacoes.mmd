@@ -1,0 +1,51 @@
+---
+title: Relações — scroll-master
+---
+%% croqui:gerado — reescrito a cada `croqui scan` enquanto esta linha existir.
+%% Apague esta linha para o diagrama virar seu; o croqui nunca mais o toca.
+flowchart LR
+  subgraph g_entry["entradas (12)"]
+    e1>"analisar_pagina"]
+    e2>"checar_limites"]
+    e3>"config_usuario"]
+    e4>"gerar_direcoes"]
+    e5>"gerar_seo"]
+    e6>"gerar_tokens"]
+    e7>"migrar_projeto"]
+    e8>"montar_design_system"]
+    e9>"montar_prompt"]
+    e10>"servidor_local"]
+    e11>"servir_site"]
+    e12>"validar_skills"]
+  end
+  subgraph g_module["módulos (12)"]
+    m1("analisar_pagina")
+    m2("checar_limites")
+    m3("config_usuario")
+    m4("gerar_direcoes")
+    m5("gerar_seo")
+    m6("gerar_tokens")
+    m7("migrar_projeto")
+    m8("montar_design_system")
+    m9("montar_prompt")
+    m10("servidor_local")
+    m11("servir_site")
+    m12("validar_skills")
+  end
+  subgraph g_external["externos (1)"]
+    x1{{"gerar_tokens"}}
+  end
+  e10 --> m10
+  e11 --> m11
+  e1 --> m1
+  e9 --> m9
+  e2 --> m2
+  e5 --> m5
+  e4 --> m4
+  e6 --> m6
+  e8 --> m8
+  e3 --> m3
+  e7 --> m7
+  e12 --> m12
+  m4 --> x1
+  m8 --> x1

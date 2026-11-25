@@ -5,3 +5,8 @@ __pycache__/
 # vídeos brutos de testes
 **/brutos/
 dist/
+
+# croqui: descartáveis (graph.json, layout.json, prd/ e uml/ são versionados)
+.croqui/graph.prev.json
+.croqui/cache.json
+.croqui/croqui.html

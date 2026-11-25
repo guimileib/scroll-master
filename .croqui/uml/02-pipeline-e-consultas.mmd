@@ -1,0 +1,25 @@
+---
+title: Pipeline com gates e pontos de consulta
+---
+%% G = aprovação do usuário. C = consulta ao consultor-seo-geo. Só achado bloqueante segura um gate.
+flowchart LR
+  e0["0. Briefing"] --> g1{"G1"}
+  g1 --> e1["1. Identidade<br/>e estrutura"]
+  e1 --> c1(["C1 estrutura"]) --> g2{"G2"}
+  g2 --> e2["2. Personagens<br/>(opcional)"]
+  e2 --> e3["3. Roteiro<br/>e textos"]
+  e3 --> c2(["C2 roteiro"]) --> g3{"G3"}
+  g3 --> e4["4. Site com<br/>placeholders"]
+  e4 --> e5["5. Prompts<br/>e geração"]
+  e5 --> e6["6. Processamento<br/>e encaixe"]
+  e6 --> e7["7. QA"]
+  e7 --> c3(["C3 técnico"]) --> g4{"G4"}
+  g4 --> pub(["publicado"])
+  pub -.-> c4(["C4 auditoria"])
+  e3 -.->|pede textos| cp(["consultor-copy"])
+  e4 -.->|adianta o C3 enquanto os vídeos são gerados| c3
+
+  class g1,g2,g3,g4 table
+  class c1,c2,c3,c4 post
+  class cp post
+  class pub ok
