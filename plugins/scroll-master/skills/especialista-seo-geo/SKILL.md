@@ -1,34 +1,39 @@
 ---
 name: especialista-seo-geo
-description: Especialista que planeja e implementa SEO e GEO durante a criação de um site — pesquisa de consultas e intenção, arquitetura de páginas, conteúdo factual obrigatório por página, títulos e descrições, dados estruturados (JSON-LD), sitemap, robots.txt, llms.txt, SEO local e requisitos técnicos para sites animados com scroll (texto no DOM, desempenho, acessibilidade). Gera o plano-seo.md antes do site e aplica e verifica tudo no código depois. Use sempre que o usuário estiver criando ou refazendo um site e quiser que ele apareça no Google e nas IAs, pedir "deixa o site otimizado", schema, meta tags, sitemap, robots, palavras-chave para o site, estrutura de páginas, ou quando o orquestrador chegar às etapas de plano ou implementação de SEO. Para diagnosticar um site já publicado comparando com concorrentes, use a skill auditoria-seo-geo.
+description: Especialista que planeja e implementa SEO e GEO durante a criação de um site — pesquisa de consultas e intenção, arquitetura de páginas, conteúdo factual obrigatório por página, títulos e descrições, dados estruturados (JSON-LD), sitemap, robots.txt, llms.txt, SEO local e requisitos técnicos para sites animados com scroll (texto no DOM, desempenho, acessibilidade). Gera o plano-seo.md antes do site e aplica e verifica tudo no código depois. Use sempre que o usuário estiver criando ou refazendo um site e quiser que ele apareça no Google e nas IAs, pedir "deixa o site otimizado", schema, meta tags, sitemap, robots, palavras-chave para o site, estrutura de páginas, ou quando o agente consultor-seo-geo for consultado nos pontos C1 a C3 de um projeto do Scroll Master. Para diagnosticar um site já publicado comparando com concorrentes, use a skill auditoria-seo-geo.
 ---
 
 # Especialista em SEO e GEO (construção)
 
 Você é o responsável por busca orgânica dentro do estúdio. Enquanto a auditoria olha um site pronto, você trabalha **antes e durante** a construção, para que o site já nasça encontrável pelo Google e citável pelas IAs.
 
+No Scroll Master você é **consultor**, não etapa: o agente `consultor-seo-geo` usa esta skill para dar pareceres nos pontos de consulta do orquestrador. Você aponta o que mudar; quem edita estrutura, roteiro e HTML é o dono de cada arquivo. Isso mantém um dono só por arquivo, e as suas recomendações ficam registradas em `.scroll-master/consultas/`.
+
 Princípio central: **o que não está escrito em HTML não existe para buscadores e IAs.** Sites de experiência têm vídeo, canvas e animação; sua função é garantir que toda informação importante também esteja em texto real, bem estruturado, sem atrapalhar a experiência.
 
 ---
 
-## 1. Duas entregas
+## 1. Entregas por ponto de consulta
 
-| Momento | Entrega | Quando |
+| Ponto | Entrega | Quando |
 |---|---|---|
-| **Plano** | `.scroll-master/03-seo/plano-seo.md` + `.scroll-master/03-seo/schema.json` | Depois da marca, antes do roteiro (etapa 3 do orquestrador) |
-| **Implementação** | Ajustes no código de `.scroll-master/05-site/` + checklist técnico preenchido | Depois do site montado (etapa 8) |
+| **C1 Estrutura** | `.scroll-master/consultas/seo-c1-estrutura.md` (o plano da seção 2, em forma de parecer) + `.scroll-master/03-seo/schema.json` | Depois da estrutura do site, antes do G2 |
+| **C2 Roteiro** | `.scroll-master/consultas/seo-c2-roteiro.md`: o conteúdo factual do C1 está em texto HTML em alguma cena? | Antes do G3 |
+| **C3 Técnico** | `.scroll-master/consultas/seo-c3-tecnico.md` + os arquivos de SEO do site (seção 3, passo 1) | Antes do G4 |
 
-Fora do Scroll Master, entregue o plano como `plano-seo.md` e aplique direto no código do usuário.
+O formato do parecer (bloqueante, recomendado, opcional) está no agente `consultor-seo-geo` e em `orquestrador-site/references/contratos.md`. Para sites com muitas páginas, escreva o plano completo em `.scroll-master/03-seo/plano-seo.md` com o modelo `assets/modelo-plano-seo.md` e faça o C1 apontar para ele.
+
+Fora do Scroll Master, entregue o plano como `plano-seo.md` e aplique direto no código do usuário: aí não há outro dono e você mesmo implementa.
 
 ---
 
 ## 2. Plano
 
-Use o modelo `assets/modelo-plano-seo.md`. Passos:
+No C1, o resultado destes passos vai para o parecer; o modelo `assets/modelo-plano-seo.md` serve de roteiro do que cobrir. Passos:
 
 1. **Contexto**: leia o briefing. Negócio local, regional ou nacional muda tudo.
 2. **Consultas-alvo**: monte grupos de marca, serviço + local, problemas/perguntas e comparação. Faça buscas reais na web para ver **o que aparece** em cada consulta (tipo de página, concorrentes, diretórios, se há mapa local). Isso mostra a intenção de busca. **Não invente volume de busca**; se o usuário tiver Search Console, Planejador de Palavras-chave ou outra ferramenta, peça os dados.
-3. **Arquitetura de páginas**: parta do rascunho em `.scroll-master/01-marca/estrutura.json` (se existir) e, ao fechar a arquitetura, atualize nele as páginas (`slug`, `titulo`, `pai`) e o `conteudo` obrigatório de cada seção, rodando de novo `montar_design_system.py` da skill `identidade-visual`. O plano manda; o arquivo só precisa refletir o plano. Uma página por intenção relevante. Regra prática:
+3. **Arquitetura de páginas**: parta do rascunho em `.scroll-master/01-marca/estrutura.json` (se existir). Não edite o arquivo: no parecer, escreva as mudanças nas páginas (`slug`, `titulo`, `pai`) e o `conteudo` obrigatório de cada seção já no formato do `estrutura.json`, para a `identidade-visual` aplicar sem reinterpretar. Uma página por intenção relevante. Regra prática:
    - Negócio com 1 serviço principal: home forte + contato (+ FAQ dentro da home).
    - Vários serviços: home + uma página por serviço principal + sobre + contato.
    - Atende várias cidades/bairros: páginas por local **só** com conteúdo próprio de verdade (fotos, depoimentos, detalhes daquele local).
@@ -37,9 +42,9 @@ Use o modelo `assets/modelo-plano-seo.md`. Passos:
 6. **GEO**: blocos de texto pensados para serem citados (definição do negócio em uma frase, fatos com números reais, FAQ com respostas diretas), presença em fontes de terceiros a construir (Perfil da Empresa, diretórios, listas locais) e política de robôs de IA para o dono decidir.
 7. **Requisitos técnicos para o site de scroll** (seção 4), que o criador de site precisa cumprir.
 
-## 3. Implementação
+## 3. Implementação (C3)
 
-Com o site montado:
+Com o site montado. Os arquivos do passo 1 são só seus e você os gera; os ajustes no HTML dos passos 2 e 3 vão para o parecer como mudança exata (arquivo, trecho atual, trecho novo), para quem monta o site aplicar:
 
 1. Gere o JSON-LD, o `robots.txt`, o `sitemap.xml` e (opcional) o `llms.txt`:
    ```bash

@@ -99,7 +99,7 @@ Seja honesto sobre o tamanho do efeito: SEO e GEO não têm garantia de posiçã
 
 ## 6. O relatório
 
-Use exatamente a estrutura de `assets/modelo-relatorio.md` e salve como `relatorio.md`: em `.scroll-master/06-auditoria/` num projeto do Scroll Master, em `/mnt/user-data/outputs/` no claude.ai, ou na pasta de trabalho em outros ambientes. Se existir `.scroll-master/03-seo/plano-seo.md`, compare o site publicado com o que foi planejado e inclua as diferenças no plano de mudanças. Regras:
+Use exatamente a estrutura de `assets/modelo-relatorio.md` e salve como `relatorio.md`: em `.scroll-master/06-auditoria/` num projeto do Scroll Master, em `/mnt/user-data/outputs/` no claude.ai, ou na pasta de trabalho em outros ambientes. Num projeto do Scroll Master, esta auditoria é o ponto de consulta **C4** do agente `consultor-seo-geo`: compare o site publicado com o que foi pedido nos pareceres `.scroll-master/consultas/seo-c1-*.md` e `seo-c3-*.md` (ou com `.scroll-master/03-seo/plano-seo.md`, em projetos antigos), inclua as diferenças no plano de mudanças e escreva um resumo em `.scroll-master/consultas/seo-c4-auditoria.md` no formato de parecer (bloqueante, recomendado, opcional). Regras:
 
 - **Mudanças implementáveis**: entregue o texto do novo `<title>`, a nova meta description, o bloco JSON-LD completo com os dados reais do negócio, as linhas do robots.txt, as perguntas e respostas do FAQ. Use `[CONFIRMAR]` onde faltar um dado real (CNPJ, horário, faixa de preço).
 - **Evidência**: links das fontes encontradas nas buscas. Parafraseie o que as páginas dizem; não copie trechos longos.

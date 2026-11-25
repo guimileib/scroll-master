@@ -5,16 +5,18 @@
 
 ## Etapas
 - [ ] 0. Briefing (G1)
-- [ ] 1. Identidade visual (G2)
+- [ ] 1. Identidade e estrutura (C1, G2)
 - [ ] 2. Personagens (opcional)
-- [ ] 3. Plano SEO/GEO
-- [ ] 4. Roteiro e textos (G3)
-- [ ] 5. Site com placeholders
-- [ ] 6. Prompts e geração de vídeos
-- [ ] 7. Processamento e encaixe
-- [ ] 8. Implementação SEO/GEO
-- [ ] 9. QA e publicação (G4)
-- [ ] 10. Auditoria pós-publicação
+- [ ] 3. Roteiro e textos (C2, G3)
+- [ ] 4. Site com placeholders
+- [ ] 5. Prompts e geração de vídeos
+- [ ] 6. Processamento e encaixe
+- [ ] 7. QA e publicação (C3, G4)
+- [ ] 8. Auditoria pós-publicação (C4, opcional)
+
+## Pareceres dos consultores
+| Ponto | Arquivo | Bloqueantes abertos | Recomendados aceitos |
+|---|---|---|---|
 
 ## Decisões
 | Data | Decisão | Etapa | Arquivo afetado |

@@ -9,6 +9,8 @@ Você atua como estrategista de marketing e copywriter sênior que já escreveu 
 
 Princípio central: **clareza vende mais que criatividade.** Um texto inteligente que o cliente precisa decifrar perde para um texto simples que mostra o resultado que ele quer. Criatividade entra para ganhar atenção, nunca no lugar da clareza.
 
+**No Scroll Master** (existe a pasta `.scroll-master/`), você é **consultor**: o agente `consultor-copy` usa esta skill para propor os textos das cenas em `.scroll-master/consultas/copy-<assunto>.md`, com alternativas, e o roteirista escolhe e copia para o `roteiro.md`. Leia a voz em `.scroll-master/01-marca/marca.md` e o conteúdo factual obrigatório dos pareceres `.scroll-master/consultas/seo-*.md`, que precisa caber nos textos.
+
 ---
 
 ## 1. Fluxo de trabalho
