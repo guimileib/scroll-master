@@ -1,0 +1,19 @@
+---
+title: Stop motion com imagens geradas (planejado, fase 4)
+---
+%% As imagens geradas já são os frames do canvas: não há vídeo no meio, e o tremor do stop motion disfarça a variação da IA.
+flowchart LR
+  folha["animacao.json<br/>12 a 24 poses em ordem"] --> mestre(["pose-mestre<br/>ficha do personagem<br/>câmera travada"])
+  mestre -->|edição de imagem, nunca do zero| chave(["poses-chave<br/>a cada 4 a 6 quadros"])
+  chave -->|edição da pose anterior| inter(["intermediários"])
+  inter -.->|reancora na mestre: a deriva não acumula| mestre
+  inter --> contato{"folha-contato.html<br/>usuário aprova"}
+  contato --> montar["montar_stopmotion.py<br/>alinha cenário pela âncora<br/>cadência em dois · holds · flicker"]
+  montar --> frames["frames WebP<br/>scrub no canvas"]
+  montar --> loop["loop MP4/WebM"]
+
+  class folha muted
+  class mestre,chave,inter table
+  class contato warn
+  class montar service
+  class frames,loop ok

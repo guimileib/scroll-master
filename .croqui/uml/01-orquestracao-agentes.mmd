@@ -1,0 +1,64 @@
+---
+title: Orquestração de agentes — Scroll Master v2
+---
+%% Verde = implementado (v0.5.0, fase 1). Cinza = planejado (fases 2 a 6, ver PRD 02-arquitetura-v2).
+%% Regra de handoff: cada agente recebe caminho, arquivos a ler, a única pasta que pode escrever e as decisões fechadas; devolve no máximo 5 linhas.
+flowchart TB
+  user(["usuário<br/>aprova G1 · G2 · G3 · G4"])
+  cfg[("~/.scroll-master/<br/>scroll-master.json<br/>modo manual · api · mcp<br/>nome da variável da chave")]
+  orq[["orquestrador-site<br/>sessão principal · estado.md"]]
+
+  user <-->|gates| orq
+  orq -.->|lê no início, grava cada resposta nova| cfg
+
+  subgraph producao["produção: donos de etapas e arquivos"]
+    marca("identidade-visual<br/>01-marca/ · estrutura.json")
+    pers("character-model<br/>02-personagens/")
+    criador("criador-site-experiencia<br/>roteiro.md · 05-site/")
+  end
+
+  subgraph consultores["consultores: só parecer, nunca editam arquivo de outro dono"]
+    seo("consultor-seo-geo<br/>C1 estrutura · C2 roteiro<br/>C3 técnico · C4 auditoria")
+    copy("consultor-copy<br/>textos de cena com alternativas")
+  end
+
+  consultas[("consultas/<br/>bloqueante · recomendado · opcional")]
+
+  subgraph cenas["fases 2 a 4: produção de cenas em paralelo"]
+    diretor("diretor-movimento<br/>técnica por cena → cena.json")
+    p1("produtor-cena 1<br/>vídeo de IA")
+    p2("produtor-cena 2<br/>scroll-loop")
+    p3("produtor-cena 3<br/>stop motion")
+    pos("pós-produção<br/>ffmpeg: frames · emenda · montagem")
+    montador("montador-site + qa")
+  end
+
+  curador("curador-padroes<br/>busca na biblioteca")
+  padroes[("padroes/<br/>cenas + sites + colhidos")]
+  gerador{{"gerador de imagem e vídeo<br/>Flow · Higgsfield · Kling"}}
+
+  orq --> marca
+  orq --> pers
+  orq --> criador
+  orq ==>|C1 a C4| seo
+  orq ==>|pedido de textos| copy
+  seo -->|grava| consultas
+  copy -->|grava| consultas
+  consultas -.->|dono aplica| marca
+  consultas -.->|dono aplica| criador
+
+  orq -.-> curador
+  curador -.->|lê| padroes
+  curador -.->|2 a 3 padrões no G2| marca
+
+  criador -.-> diretor
+  diretor -.-> p1 & p2 & p3
+  p1 & p2 & p3 -.->|manual ou via chave| gerador
+  p1 & p2 & p3 -.-> pos
+  pos -.-> montador
+  montador -.->|colheita no fim do projeto| padroes
+
+  class orq accent
+  class user,marca,pers,criador,seo,copy,consultas,cfg ok
+  class diretor,p1,p2,p3,pos,montador,curador,padroes muted
+  class gerador external

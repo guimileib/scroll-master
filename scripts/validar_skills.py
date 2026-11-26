@@ -3,7 +3,8 @@
 Valida as skills do repositório (só biblioteca padrão). Rode na raiz do repo:
   python3 scripts/validar_skills.py
 
-Confere: manifestos JSON, frontmatter de cada SKILL.md (name igual à pasta, description presente,
+Confere: manifestos JSON, frontmatter dos agentes em agents/ (name igual ao arquivo, skills existentes),
+frontmatter de cada SKILL.md (name igual à pasta, description presente,
 sem ": " solto que quebra o YAML), arquivos citados em references/, assets/ e scripts/ existindo,
 skills citadas entre crases existindo, e sintaxe dos scripts Python.
 """
@@ -11,6 +12,13 @@ import json
 import re
 import sys
 from pathlib import Path
+
+# Consoles do Windows usam cp1252 e quebram ao imprimir acentos e símbolos como ✔.
+for _fluxo in (sys.stdout, sys.stderr):
+    try:
+        _fluxo.reconfigure(encoding="utf-8")
+    except (AttributeError, ValueError):
+        pass
 
 RAIZ = Path(__file__).resolve().parent.parent
 erros, avisos = [], []
@@ -83,6 +91,29 @@ for s in skills:
         if citada not in nomes:
             avisos.append(f"{rel}: cita a skill '{citada}', que não está no repo")
 
+agentes = sorted(RAIZ.glob("plugins/*/agents/*.md"))
+for a in agentes:
+    rel = a.relative_to(RAIZ)
+    fm = frontmatter(a.read_text(encoding="utf-8"))
+    if not fm:
+        erros.append(f"{rel}: sem frontmatter")
+        continue
+    if fm.get("name") != a.stem:
+        erros.append(f"{rel}: name '{fm.get('name')}' diferente do arquivo '{a.stem}'")
+    desc = fm.get("description", "")
+    if not desc:
+        erros.append(f"{rel}: description vazia")
+    elif not (desc.startswith('"') or desc.startswith("'")) and ": " in desc:
+        erros.append(f"{rel}: description contém ': ' sem aspas (quebra o YAML)")
+    for citada in [s.strip() for s in fm.get("skills", "").split(",") if s.strip()]:
+        if citada not in nomes:
+            erros.append(f"{rel}: carrega a skill '{citada}', que não existe")
+nomes_agentes = {a.stem for a in agentes}
+for s in skills:
+    for citado in set(re.findall(r"agente `([a-z0-9-]+)`", s.read_text(encoding="utf-8"))):
+        if citado not in nomes_agentes:
+            avisos.append(f"{s.relative_to(RAIZ)}: cita o agente '{citado}', que não está em agents/")
+
 for py in RAIZ.glob("**/*.py"):
     try:
         compile(py.read_text(encoding="utf-8"), str(py), "exec")
@@ -90,6 +121,7 @@ for py in RAIZ.glob("**/*.py"):
         erros.append(f"{py.relative_to(RAIZ)}: erro de sintaxe na linha {e.lineno} ({e.msg})")
 
 print(f"{len(skills)} skills: {', '.join(sorted(nomes))}")
+print(f"{len(agentes)} agentes: {', '.join(sorted(nomes_agentes))}")
 for a in avisos:
     print(f"AVISO {a}")
 for e in erros:

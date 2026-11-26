@@ -1,0 +1,20 @@
+---
+title: Scroll-loop por cadeia de quadros-chave (planejado, fase 3)
+---
+%% Pedir "primeiro e último quadro iguais" no prompt falha muito. Controlar os quadros resolve:
+%% o último clipe termina no mesmo K0 em que o primeiro começa.
+flowchart LR
+  k0(["K0<br/>imagem"]) -->|clipe A · frames → vídeo| k1(["K1<br/>imagem"])
+  k1 -->|clipe B| k2(["K2<br/>imagem"])
+  k2 -->|clipe C fecha o loop| k0
+
+  ap{"usuário aprova<br/>os quadros-chave"}
+  k2 -.-> ap
+  ap -->|só então gera vídeo| em["emendar_loop.sh<br/>SSIM em cada emenda<br/>crossfade só onde falhar"]
+  em --> fr["frames WebP<br/>ou loop MP4/WebM"]
+  fr --> site["site: frame = progresso × voltas × total % total"]
+
+  class k0,k1,k2 table
+  class ap warn
+  class em,fr service
+  class site ok
